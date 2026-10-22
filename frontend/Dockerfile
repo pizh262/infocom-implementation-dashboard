@@ -1,16 +1,12 @@
-# Используем официальный образ Node.js
-FROM node:18-alpine
+FROM node:22-alpine
 
-# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем package.json и устанавливаем зависимости
-COPY package.json .
+COPY package.json ./
 RUN npm install
 
-# Копируем весь остальной код фронтенда
 COPY . .
 
-# Открываем порт и запускаем приложение
-EXPOSE 3000
-CMD ["npm", "start"]
+EXPOSE 5173
+
+CMD ["npm", "run", "dev"]
