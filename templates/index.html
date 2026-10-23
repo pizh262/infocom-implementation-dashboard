@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дашборд проектов</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/app.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div>
+            <h1>Дашборд проектов внедрения</h1>
+            <p>Управление проектами и задачами команды</p>
+        </div>
+        <button id="refreshButton" type="button">Обновить</button>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2>Статусы проектов</h2>
+            <div class="legend">
+                <span class="badge on_track">В сроке</span>
+                <span class="badge risk">Есть риски</span>
+                <span class="badge blocked">Блокер</span>
+            </div>
+            <div id="projects" class="project-grid"></div>
+        </section>
+
+        <section class="panel">
+            <h2>Создать проект</h2>
+            <form id="projectForm">
+                <label for="projectName">Название проекта</label>
+                <input id="projectName" name="name"
+                       required maxlength="150">
+                <button type="submit">Добавить проект</button>
+            </form>
+        </section>
+
+        <section class="panel">
+            <h2>Создать задачу</h2>
+            <form id="taskForm">
+                <label for="taskTitle">Название задачи</label>
+                <input id="taskTitle" name="title"
+                       required maxlength="200">
+
+                <label for="projectId">Проект</label>
+                <select id="projectId" name="project_id" required></select>
+
+                <label for="assigneeId">Исполнитель</label>
+                <select id="assigneeId" name="assignee_id" required></select>
+
+                <label for="deadline">Дедлайн</label>
+                <input id="deadline" name="deadline"
+                       type="date" required>
+
+                <label for="taskStatus">Статус задачи</label>
+                <select id="taskStatus" name="status">
+                    <option value="todo">К выполнению</option>
+                    <option value="in_progress">В работе</option>
+                    <option value="done">Выполнена</option>
+                    <option value="blocked">Блокер</option>
+                </select>
+
+                <button type="submit">Создать задачу</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Список задач</h2>
+            <div id="message" role="status" aria-live="polite"></div>
+            <div id="tasks" class="task-list"></div>
+        </section>
+    </main>
+</body>
+</html>
