@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  title: Implementation Projects Dashboard API
+  version: 1.0.0
+  description: API-контракт для управления проектами внедрения и задачами
+paths:
+  /api/projects:
+    get:
+      summary: Получить список проектов
+      responses:
+        '200':
+          description: Успешный ответ со списком проектов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+
+  /api/projects/{id}/status:
+    get:
+      summary: Получить статус проекта
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Статус проекта
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [IN_SCHEDULE, AT_RISK, BLOCKER]
+
+  /api/tasks:
+    post:
+      summary: Создать новую задачу
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+      responses:
+        '201':
+          description: Задача успешно создана
+
+components:
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+          enum: [IN_SCHEDULE, AT_RISK, BLOCKER]
+    CreateTaskRequest:
+      type: object
+      required:
+        - projectId
+        - title
+        - assigneeId
+      properties:
+        projectId:
+          type: string
+        title:
+          type: string
+        assigneeId:
+          type: string
+        deadline:
+          type: string
+          format: date-time
+        isBlocker:
+          type: boolean
