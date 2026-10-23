@@ -35,7 +35,7 @@ docker compose up --build
 - Backend: http://localhost:8000
 - Health check: http://localhost:8000/health
 - Swagger API: http://localhost:8000/docs
-- PostgreSQL: localhost:5432
+- PostgreSQL: http://localhost:5432
 
 Для остановки:
 
