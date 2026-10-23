@@ -1,0 +1,156 @@
+openapi: 3.0.3
+
+info:
+  title: Project Dashboard API
+  version: 1.0.0
+  description: API для управления проектами внедрения и задачами
+
+servers:
+  - url: http://localhost:5000
+
+paths:
+  /api/projects:
+    get:
+      summary: Получить список проектов
+      responses:
+        "200":
+          description: Список проектов со статусами
+
+    post:
+      summary: Создать проект
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  example: Внедрение CRM
+      responses:
+        "201":
+          description: Проект создан
+        "400":
+          description: Некорректные данные
+
+  /api/users:
+    get:
+      summary: Получить список исполнителей
+      responses:
+        "200":
+          description: Список пользователей
+
+  /api/tasks:
+    get:
+      summary: Получить список задач
+      responses:
+        "200":
+          description: Список задач
+
+    post:
+      summary: Создать задачу
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - project_id
+                - assignee_id
+                - deadline
+              properties:
+                title:
+                  type: string
+                project_id:
+                  type: integer
+                assignee_id:
+                  type: integer
+                deadline:
+                  type: string
+                  format: date
+                status:
+                  type: string
+                  enum:
+                    - todo
+                    - in_progress
+                    - done
+                    - blocked
+      responses:
+        "201":
+          description: Задача создана
+        "400":
+          description: Некорректные данные
+        "404":
+          description: Проект или исполнитель не найден
+
+  /api/tasks/{task_id}:
+    patch:
+      summary: Изменить задачу
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                deadline:
+                  type: string
+                  format: date
+                assignee_id:
+                  type: integer
+                status:
+                  type: string
+                  enum:
+                    - todo
+                    - in_progress
+                    - done
+                    - blocked
+      responses:
+        "200":
+          description: Задача обновлена
+        "400":
+          description: Некорректные данные
+        "404":
+          description: Задача не найдена
+
+    delete:
+      summary: Удалить задачу
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Задача удалена
+        "404":
+          description: Задача не найдена
+
+  /api/projects/{project_id}/status:
+    get:
+      summary: Получить актуальный статус проекта
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Статус проекта
+        "404":
+          description: Проект не найден
