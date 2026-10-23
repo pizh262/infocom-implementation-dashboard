@@ -73,7 +73,7 @@
 
 **Скриншот 3. Проверка GitHub Actions**
 
-[Вставить скриншот результата workflow]
+<img width="2560" height="1080" alt="экшн" src="https://github.com/user-attachments/assets/aff1b5f3-1cd2-4a0d-919c-fc5698cb4550" />
 
 **Скриншот 4. Задачи команды**
 
@@ -87,19 +87,23 @@
 
 После запуска планируется проверить следующие адреса:
 
-* Frontend: http://localhost:5173
-* Backend: http://localhost:8000
-* Проверка состояния backend: http://localhost:8000/health
 * Документация API: http://localhost:8000/docs
+* Проверка: http://localhost:8080/
 
 **Скриншот 5. Логи Docker Compose**
 
-[Вставить скриншот фактических логов запущенных контейнеров]
+<img width="2560" height="1624" alt="docker1" src="https://github.com/user-attachments/assets/6954d498-6cd9-4159-8fb5-602bcd523d65" />
+
+<img width="2560" height="1628" alt="docker2" src="https://github.com/user-attachments/assets/3132a056-2e2e-4f4e-9175-6c78afc89acb" />
+
+<img width="2560" height="1625" alt="docker3" src="https://github.com/user-attachments/assets/fcf372dd-46ea-4a4f-a800-bb6ec29b4623" />
+
+<img width="2560" height="1215" alt="docker4" src="https://github.com/user-attachments/assets/d0cfed20-dcc7-4170-9b49-e2ed1c4ef518" />
+
 
 **Скриншот 6. Работающий интерфейс приложения**
 
-[Вставить скриншот страницы приложения в браузере]
-
+<img width="1992" height="731" alt="localhost" src="https://github.com/user-attachments/assets/d6910019-ab76-4179-9274-b500d0b036d5" />
 
 
 ## 8. Вывод
